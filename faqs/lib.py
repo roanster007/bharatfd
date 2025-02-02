@@ -27,7 +27,6 @@ def initialize_services():
 
     # Initialize redis client.
     initialize_redis_client()
-    
 
 
 def initialize_redis_client():
@@ -52,7 +51,6 @@ def initialize_redis_client():
 
     for faq in faq_data:
         redis_client.rpush(faq_cache_key, json.dumps(faq))
-
 
 
 # For each FAQ, we create a new row in the FAQ table
@@ -120,18 +118,20 @@ def delete_faq(faq_id):
     for faq in faq_data:
         if faq.get("id") == faq_id:
             continue
-        
+
         redis_client.rpush(faq_cache_key, json.dumps(faq))
 
 
 def maybe_get_faq_data(lang):
     if lang not in supported_langs:
         return
-    
+
     # If the requested language is `English`, use the results
     # from the cache.
     if lang == Language.EN:
-        faq_data = [json.loads(item) for item in redis_client.lrange(faq_cache_key, 0, -1)]
+        faq_data = [
+            json.loads(item) for item in redis_client.lrange(faq_cache_key, 0, -1)
+        ]
     else:
         faqs = FAQTranslation.objects.filter(lang=lang)
         faq_data = [faq.to_dict() for faq in faqs]

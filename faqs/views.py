@@ -45,7 +45,9 @@ class FAQ(View):
         answer = request.GET.get("answer")
 
         if question is None or answer is None:
-            return JsonResponse({"error": "Missing FAQ question or answer!"}, status=400)
+            return JsonResponse(
+                {"error": "Missing FAQ question or answer!"}, status=400
+            )
 
         async_to_sync(create_new_faq_entry)(question, answer)
 
