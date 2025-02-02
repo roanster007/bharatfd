@@ -1,0 +1,100 @@
+swagger: "2.0"
+info:
+  title: BharatFD Backend Intern
+  version: 1.0.0
+paths:
+  /faqs:
+    get:
+      summary: Returns all the FAQs in a specific language. If no language is provided, it defaults to English.
+      parameters:
+        - in: query
+          name: lang
+          required: false
+          type: string
+          description: Language of the FAQs in ISO 639-1 format. Supported languages - English, Hindi, Bengali, German, Italian, Japanese
+      responses:
+        "200":
+          description: Successfully fetched FAQs in a language.
+          schema:
+            type: object
+            properties:
+              faqs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 1
+                    language:
+                      type: string
+                      example: English
+                    question:
+                      type: string
+                      example: How are you?
+                    answer:
+                      type: string
+                      example: I am Good
+        "400":
+          description: Language provided not supported.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Language not supported!
+    post:
+      summary: Adds a new FAQ Question and Answer.
+      parameters:
+        - in: query
+          name: question
+          required: true
+          type: string
+          description: FAQ Question
+        - in: query
+          name: answer
+          required: true
+          type: string
+          description: FAQ Answer
+      responses:
+        "200":
+          description: Successfully added FAQ Question and Answer.
+          schema:
+            type: object
+            properties:
+              success:
+                type: string
+                example: Successfully created new FAQ entry!
+        "400":
+          description: Failed to add FAQ Question and Answer.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Missing FAQ question or answer!
+    delete:
+      summary: Deletes an FAQ entry.
+      parameters:
+        - in: query
+          name: id
+          required: true
+          type: string
+          description: ID of the FAQ entry to be deleted.
+      responses:
+        "200":
+          description: Successfully deleted FAQ Question and Answer.
+          schema:
+            type: object
+            properties:
+              success:
+                type: string
+                example: Successfully deleted FAQ entry!
+        "400":
+          description: Failed to delete FAQ Question and Answer.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: ID parameter must be an integer.
