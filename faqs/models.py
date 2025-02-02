@@ -43,4 +43,14 @@ class FAQTranslation(models.Model):
                 name="lang_question_index",
             )
         ]
+    
+    def to_dict(self):
+        language = dict(Language.choices).get(self.lang.upper())
+
+        return {
+            "id": self.faq_id,
+            "language": language,
+            "question": self.question,
+            "answer": self.answer,
+        }
 

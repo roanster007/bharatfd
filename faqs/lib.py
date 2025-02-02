@@ -59,3 +59,13 @@ def delete_faq(faq_id):
 
     # Then delete the reference to the FAQ
     FAQ.objects.filter(id=faq_id).delete()
+
+
+def maybe_get_faq_data(lang):
+    if lang not in supported_langs:
+        return
+    
+    faqs = FAQTranslation.objects.filter(lang=lang)
+    faq_data = [faq.to_dict() for faq in faqs]
+
+    return faq_data
