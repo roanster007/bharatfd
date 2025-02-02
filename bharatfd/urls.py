@@ -17,10 +17,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-
+from django.views.decorators.csrf import csrf_exempt
 from faqs.views import FAQ
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("faqs/", FAQ.as_view(), name="getFAQs")
+    path("faqs", csrf_exempt(FAQ.as_view()), name="getFAQs"),
 ]

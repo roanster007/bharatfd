@@ -32,6 +32,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition

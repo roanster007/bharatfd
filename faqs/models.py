@@ -32,7 +32,7 @@ class FAQTranslation(models.Model):
     answer = RichTextField()
 
     class Meta:
-        unique_together = ("faq", "lang")   
+        unique_together = ("faq", "lang")
         indexes = [
             models.Index(
                 fields=["faq", "lang"],
@@ -41,11 +41,11 @@ class FAQTranslation(models.Model):
             models.Index(
                 fields=["lang", "question"],
                 name="lang_question_index",
-            )
+            ),
         ]
-    
+
     def to_dict(self):
-        language = dict(Language.choices).get(self.lang.upper())
+        language = dict(Language.choices).get(self.lang)
 
         return {
             "id": self.faq_id,
@@ -53,4 +53,3 @@ class FAQTranslation(models.Model):
             "question": self.question,
             "answer": self.answer,
         }
-
