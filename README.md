@@ -76,6 +76,11 @@ Task Requirements
 - **googletrans**: To translate the FAQs into various supported languages.
 - **django-ckeditor**: To provide a WYSIWYG editor for FAQs answers, supporting multiple languages.
 
+## Deployment
+
+- This app is deployed at https://bharatfd-app-1.onrender.com/
+- The APIs described in the later `API Usage` section can be implemented on this server!
+
 ## How to setup and run locally (With Docker)
 
 1. **Clone the repository:**
