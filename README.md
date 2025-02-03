@@ -78,8 +78,10 @@ Task Requirements
 
 ## Deployment
 
-- This app is deployed at https://bharatfd-app-1.onrender.com/
+- The APIs can be tested using `Swagger` UI deployed at https://bharatfd-app-1.onrender.com/docs
+- The API requests are served at https://bharatfd-app-1.onrender.com/
 - The APIs described in the later `API Usage` section can be implemented on this server!
+- The Admin Panel can be accessed at https://bharatfd-app-1.onrender.com/admin (username - `roanster007`, password - `password`)
 
 ## How to setup and run locally (With Docker)
 
